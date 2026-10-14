@@ -1,0 +1,10 @@
+com\portal\LoginServlet.class
+com\portal\StudentUploadStorage.class
+com\portal\Student.class
+com\portal\DBConnection.class
+com\portal\StudentListServlet.class
+com\portal\AddStudentServlet.class
+com\portal\FileServlet.class
+com\portal\GenerateHash.class
+com\portal\LogoutServlet.class
+com\portal\DeleteStudentServlet.class

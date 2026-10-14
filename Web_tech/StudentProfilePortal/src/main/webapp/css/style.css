@@ -1,0 +1,573 @@
+/* ==========================================================================
+   style.css  –  Student Profile Portal
+   A clean, modern design with a teal/navy palette and subtle animations.
+   ========================================================================== */
+
+/* ---------- 0. Google Fonts import ---------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ---------- 1. CSS Custom Properties (Design Tokens) ----------------------- */
+:root {
+    /* Primary palette */
+    --color-primary:       #1a7f64;   /* teal-green */
+    --color-primary-dark:  #145f4c;
+    --color-primary-light: #e6f4f0;
+    --color-accent:        #f0a500;   /* warm amber accent */
+
+    /* Neutral palette */
+    --color-bg:            #f0f4f8;
+    --color-surface:       #ffffff;
+    --color-border:        #d1dce8;
+    --color-text:          #1e293b;
+    --color-text-muted:    #64748b;
+    --color-text-light:    #94a3b8;
+
+    /* Danger / success */
+    --color-error:         #dc2626;
+    --color-error-bg:      #fef2f2;
+    --color-success:       #16a34a;
+    --color-success-bg:    #f0fdf4;
+
+    /* Topbar */
+    --topbar-bg:           #0f2b46;
+    --topbar-text:         #e2eaf4;
+
+    /* Shadows */
+    --shadow-sm:  0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+    --shadow-md:  0 4px 12px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.06);
+    --shadow-lg:  0 10px 30px rgba(0,0,0,.12);
+
+    /* Spacing & layout */
+    --radius-sm:  6px;
+    --radius-md:  12px;
+    --radius-lg:  20px;
+    --radius-xl:  28px;
+
+    /* Transition */
+    --transition: 0.22s ease;
+}
+
+/* ---------- 2. Reset & Base ------------------------------------------------ */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+a:hover { color: var(--color-primary-dark); }
+
+img { max-width: 100%; display: block; }
+
+/* ---------- 3. Utility classes -------------------------------------------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 22px;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: .9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all var(--transition);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: #fff;
+}
+.btn-primary:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--topbar-text);
+    border-color: rgba(255,255,255,.35);
+}
+.btn-outline:hover {
+    background: rgba(255,255,255,.12);
+    border-color: rgba(255,255,255,.6);
+}
+
+.btn-doc {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    border-color: transparent;
+    font-size: .85rem;
+    padding: 8px 16px;
+}
+.btn-doc:hover {
+    background: var(--color-primary);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.btn-block { width: 100%; }
+
+.btn-sm { padding: 6px 14px; font-size: .82rem; }
+
+/* ---------- 4. Alert banners ---------------------------------------------- */
+.alert {
+    padding: 12px 18px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    font-size: .9rem;
+    font-weight: 500;
+    border-left: 4px solid;
+}
+.alert-error {
+    background: var(--color-error-bg);
+    color: var(--color-error);
+    border-color: var(--color-error);
+}
+.alert-success {
+    background: var(--color-success-bg);
+    color: var(--color-success);
+    border-color: var(--color-success);
+}
+
+/* ---------- 5. Form controls ---------------------------------------------- */
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    font-size: .875rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 6px;
+}
+.form-control {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--color-text);
+    background: var(--color-surface);
+    transition: border-color var(--transition), box-shadow var(--transition);
+    outline: none;
+}
+.form-control:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(26,127,100,.15);
+}
+.form-control::placeholder { color: var(--color-text-light); }
+
+.form-page {
+    max-width: 920px;
+}
+
+.form-page .page-header,
+.student-form-card .form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.student-form-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 32px;
+}
+
+.form-card-title {
+    font-size: 1.15rem;
+    margin-bottom: 24px;
+}
+
+.student-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+}
+
+.file-control {
+    padding: 8px;
+    font-size: .9rem;
+}
+
+.field-hint,
+.optional-label {
+    color: var(--color-text-muted);
+    font-size: .78rem;
+    font-weight: 400;
+}
+
+.field-hint {
+    display: block;
+    margin-top: 6px;
+}
+
+.form-actions {
+    border-top: 1px solid var(--color-border);
+    margin-top: 8px;
+    padding-top: 22px;
+}
+
+.btn-secondary {
+    background: #eef2f7;
+    color: var(--color-text);
+}
+.btn-secondary:hover {
+    background: #e2e8f0;
+}
+
+.btn-danger {
+    background: var(--color-error-bg);
+    color: var(--color-error);
+    border-color: transparent;
+}
+.btn-danger:hover {
+    background: var(--color-error);
+    color: #fff;
+}
+
+/* ---------- 6. LOGIN PAGE ------------------------------------------------- */
+.login-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    /* Diagonal gradient background */
+    background: linear-gradient(135deg, #0f2b46 0%, #1a7f64 60%, #145f4c 100%);
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 420px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+/* Header above the card */
+.login-header {
+    text-align: center;
+    margin-bottom: 28px;
+    animation: fadeInDown .5s ease both;
+}
+.portal-icon {
+    font-size: 3rem;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,.3));
+}
+.login-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+}
+.login-subtitle {
+    font-size: .85rem;
+    color: rgba(255,255,255,.7);
+    margin-top: 4px;
+}
+
+/* The white card */
+.login-card {
+    width: 100%;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    box-shadow: var(--shadow-lg);
+    animation: fadeInUp .5s ease .1s both;
+}
+
+.login-hint {
+    text-align: center;
+    margin-top: 18px;
+    font-size: .8rem;
+    color: var(--color-text-muted);
+}
+
+.login-footer {
+    margin-top: 24px;
+    color: rgba(255,255,255,.55);
+    font-size: .78rem;
+    text-align: center;
+}
+
+/* ---------- 7. TOP NAVIGATION BAR ----------------------------------------- */
+.topbar {
+    background: var(--topbar-bg);
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 24px;
+}
+.topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.brand-icon { font-size: 1.5rem; }
+.brand-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+.topbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.welcome-text {
+    font-size: .9rem;
+    color: var(--topbar-text);
+}
+.welcome-text strong { color: var(--color-accent); }
+
+/* ---------- 8. MAIN CONTENT AREA ------------------------------------------ */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+}
+
+.page-header {
+    margin-bottom: 36px;
+}
+.students-body .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.2;
+}
+.page-subtitle {
+    font-size: .95rem;
+    color: var(--color-text-muted);
+    margin-top: 6px;
+}
+
+/* ---------- 9. STUDENT CARD GRID ------------------------------------------ */
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+}
+
+/* Individual student card */
+.student-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    transition: transform var(--transition), box-shadow var(--transition);
+    display: flex;
+    flex-direction: column;
+    animation: fadeInUp .4s ease both;
+}
+.student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Photo area */
+.card-photo-wrap {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, #e6f4f0, #c8e6de);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+.card-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform .4s ease;
+}
+.student-card:hover .card-photo {
+    transform: scale(1.04);
+}
+.photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary-light), #c8e6de);
+}
+.avatar-initials {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    opacity: .6;
+    user-select: none;
+}
+
+/* Card body */
+.card-body {
+    padding: 22px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+
+.student-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text);
+    border-bottom: 2px solid var(--color-primary-light);
+    padding-bottom: 10px;
+}
+
+/* Meta rows */
+.student-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.meta-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.meta-label {
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    min-width: 78px;
+}
+.meta-value {
+    font-size: .9rem;
+    color: var(--color-text);
+}
+.badge {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: .78rem;
+    font-weight: 600;
+}
+.email-link {
+    font-size: .88rem;
+    word-break: break-all;
+}
+
+/* Card action row */
+.card-actions {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.card-actions form {
+    margin: 0;
+}
+.no-doc-msg {
+    font-size: .82rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+}
+
+/* ---------- 10. EMPTY STATE ------------------------------------------------ */
+.empty-state {
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--color-text-muted);
+}
+.empty-icon { font-size: 4rem; margin-bottom: 16px; }
+.empty-state h2 { font-size: 1.4rem; margin-bottom: 8px; }
+
+/* ---------- 11. FOOTER ---------------------------------------------------- */
+.site-footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--color-text-muted);
+    font-size: .82rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: 40px;
+}
+
+/* ---------- 12. ANIMATIONS ------------------------------------------------- */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Stagger each card */
+.student-card:nth-child(1)  { animation-delay: .05s; }
+.student-card:nth-child(2)  { animation-delay: .10s; }
+.student-card:nth-child(3)  { animation-delay: .15s; }
+.student-card:nth-child(4)  { animation-delay: .20s; }
+.student-card:nth-child(5)  { animation-delay: .25s; }
+.student-card:nth-child(6)  { animation-delay: .30s; }
+
+/* ---------- 13. RESPONSIVE ------------------------------------------------- */
+@media (max-width: 768px) {
+    .topbar-inner { padding: 12px 16px; }
+    .brand-name   { font-size: .95rem; }
+    .main-content { padding: 24px 16px 48px; }
+    .page-title   { font-size: 1.5rem; }
+    .student-grid { grid-template-columns: 1fr; }
+    .login-card   { padding: 28px 22px; }
+    .student-form-card { padding: 24px 20px; }
+    .student-form-grid { grid-template-columns: 1fr; }
+    .students-body .page-header,
+    .form-page .page-header { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+    .welcome-text { display: none; } /* hide username text on very small screens */
+}

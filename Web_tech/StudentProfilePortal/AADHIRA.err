@@ -1,0 +1,5 @@
+2026-10-14T05:37:03.043157Z 0 [System] [MY-013169] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.40) initializing of server in progress as process 13964
+2026-10-14T05:37:03.095616Z 0 [ERROR] [MY-010460] [Server] --initialize specified but the data directory exists and is not writable. Aborting.
+2026-10-14T05:37:03.104054Z 0 [ERROR] [MY-013236] [Server] The designated data directory C:\Users\Aadhi\OneDrive\??????\webdevelopment\StudentProfilePortal\mysql-data\ is unusable. You can remove all files that the server added to it.
+2026-10-14T05:37:03.385446Z 0 [ERROR] [MY-010119] [Server] Aborting
+2026-10-14T05:37:03.393872Z 0 [System] [MY-010910] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Shutdown complete (mysqld 8.0.40)  MySQL Community Server - GPL.
